@@ -3,23 +3,20 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
 
-        clean: ['build/'], //delete build directory
+        clean: ['build/'],
 
-        jshint: { //task name
-            options: { //these options apply to ALL targets
+        jshint: {
+            options: {
                 jshintrc: '.jshintrc',
                 ignores: [
                     'src/js/vendor/**'
                 ]
             },
-            all: { //target name  // **/* = globbing pattern
-                files: { //target-specific option
-                    // the files to run this on
-                    src: [ 'src/js/**/*.js', 'Gruntfile.js' ]
+            all: {
+                files: {
+                    src: [ 'src/js/**/*.js', 'gruntfile.js' ]
                 }
             }
-            // could have multiple targets in here...
-            // each target can have its own multiple options for this task
         },
 
         concat: {
@@ -27,7 +24,7 @@ module.exports = function(grunt) {
                 options: {
                     sourceMap: true
                 },
-                src: ['src/js/shop.module.js', 'src/js/*.js'],
+                src: ['src/js/todo.module.js', 'src/js/*.js'],
                 dest: 'build/js/main.js'
             }
         },
@@ -48,7 +45,7 @@ module.exports = function(grunt) {
             },
             vendorjs: {
                 files: [
-                    { expand: true, cwd: 'src/js', src: ['vendor/jquery/dist/jquery.min.js'], dest: 'build/js/'}
+                    { expand: true, cwd: 'src/js', src: ['vendor/angular/angular.min.js'], dest: 'build/js/'}
                 ]
             }
 
@@ -76,6 +73,28 @@ module.exports = function(grunt) {
                 files: [ 'src/**/*.html' ],
                 tasks: [ 'copy:html' ]
             }
+        },
+
+        karma: {
+            all: {
+                options: {
+                    frameworks: ['mocha', 'chai'],
+                    client: {
+                        mocha: {
+                            ui: 'tdd'
+                        }
+                    },
+                    browsers: ['PhantomJS'],
+                    singleRun: true,
+                    files: [
+                        'node_modules/angular/angular.js',
+                        'node_modules/angular-mocks/angular-mocks.js',
+                        'src/js/todo.module.js',
+                        'src/js/**/*.js',
+                        'test/specs/**/*.spec.js'
+                    ]
+                }
+            }
         }
 
     });
@@ -89,10 +108,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-karma');
 
 
     //setting up task aliases
-    grunt.registerTask('test', 'connect');
+    grunt.registerTask('test', ['connect', 'karma']);
     grunt.registerTask('build', [ 'clean', 'jshint', 'concat', 'sass', 'copy']);
     grunt.registerTask('default', [ 'build' ]);
 };
