@@ -51,15 +51,6 @@ module.exports = function(grunt) {
 
         },
 
-        connect: {
-            server: {
-                options: {
-                    port: 8888,
-                    base: '.'
-                }
-            }
-        },
-
         watch: {
             sass: {
                 files: [ 'src/sass/**/*.scss' ],
@@ -106,13 +97,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-karma');
 
 
     //setting up task aliases
-    grunt.registerTask('test', ['connect', 'karma']);
+    grunt.registerTask('test', ['karma']);
     grunt.registerTask('build', [ 'clean', 'jshint', 'concat', 'sass', 'copy']);
     grunt.registerTask('default', [ 'build' ]);
 };
