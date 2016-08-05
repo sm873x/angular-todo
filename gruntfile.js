@@ -58,7 +58,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: [ 'src/js/**/*.js' ],
-                tasks: [ 'jshint', 'test', 'concat' ]
+                tasks: [ 'jshint','test', 'concat' ] //add 'test' in middle
             },
             html: {
                 files: [ 'src/**/*.html' ],
@@ -78,10 +78,10 @@ module.exports = function(grunt) {
                     browsers: ['PhantomJS'],
                     singleRun: true,
                     files: [
-                        'node_modules/angular/angular.js',
+                        'src/js/vendor/angular/angular.js',
                         'node_modules/angular-mocks/angular-mocks.js',
                         'src/js/todo.module.js',
-                        'src/js/**/*.js',
+                        'src/js/*.js',
                         'test/specs/**/*.spec.js'
                     ]
                 }

@@ -1,0 +1,58 @@
+body {
+    background-color: $backgroundColor;
+    font-family: $primaryFont;
+    position: relative;
+    text-align: center;
+}
+
+main {
+    border: $innerBorderColor;
+    box-shadow: $mainShadow;
+    position: relative;
+    margin: 0 auto;
+    width: $mainWidth;
+}
+
+header {
+    h1 {
+        font-size: $titleFontSize;
+        margin: $titleMargin;
+        color: $titleTextColor;
+        font-weight: lighter;
+    }
+}
+
+
+nav {
+
+    &::after {
+        clear: both;
+        content: '';
+        display: table;
+    }
+
+    .remaining {
+        float: left;
+    }
+
+
+    .clear {
+        float: right;
+        clear: right;
+        margin-top: $clearMarginTop;
+    }
+
+}
+
+nav {
+
+    float: left;
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+        float: left;
+    }
+}

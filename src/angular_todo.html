@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app='[Insert Module]'>
+<html ng-app='todo'>
     <head>
         <meta charset='utf-8'>
         <title>[Insert Title]</title>
@@ -11,6 +11,8 @@
             content='width=device-width, initial-scale=1.0, minimum-scale=1.0,
                 maximum-scale=1.0, user-scalable=no'>
 
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,400,400italic' rel='stylesheet' type='text/css'>
+        <link rel='stylesheet' href='../font-awesome.css'>
         <link
             href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
             rel='stylesheet'
@@ -22,17 +24,74 @@
     </head>
     <body>
         <header>
-            <h1></h1>
-
+            <h1>todos</h1>
         </header>
 
         <main>
+            <section ng-controller='ListController as list'>
+                <form
+                    novalidate
+                    method='post'
+                    name='inputItem'
+                    ng-submit='list.addItem(list.content)'>
+                    <input
+                        type='text'
+                        name='listItem'
+                        ng-model='list.content'
+                        class='new-todo'
+                        placeholder='   What needs to be done?'
+                        required>
+                </form>
 
+                <ul class='items'>
+                    <!-- example of existing item (incomplete) -->
+
+                    <!-- <li>
+                        <article class='openItem'>
+                            <button class='check'></button>
+                            <p class='todoText'>learn html</p>
+                            <input type='text' class='edit-todo' value='learn html'>
+                            <button class='delete'>X</button>
+                        </article>
+                    </li> -->
+
+                    <!-- example of completed item -->
+    <!--
+                    <li>
+                        <article class='completed'>
+                            <button class='check'><i></i></button>
+                            <p class='complete'>learn css</p>
+                            <input type='text' class='edit-todo' value='learn css'>
+                            <button class='delete'>X</button>
+                        </article>
+                    </li> -->
+
+                    <!-- example of item currently being edited -->
+
+                    <!-- <li>
+                        <article class='editing'>
+                            <button class='check'></button>
+                            <p>learn javascript</p>
+                            <input type='text' class='edit-todo' value='learn javascript'>
+                            <button class='delete'>X</button>
+                        </article>
+                    </li> -->
+
+                </ul>
+            </section>
+
+            <nav>
+                <p class='remaining'><span class='incomplete-items'>0</span> items left</p>
+
+                <ul>
+                    <li><button class='show-all-active'>All</button></li>
+                    <li><button class='show-active'>Active</button></li>
+                    <li><button class='show-completed'>Completed</button></li>
+                </ul>
+
+                <button class='clear'>Clear completed</button>
+            <nav>
         </main>
-
-        <footer>
-            <p></p>
-        </footer>
 
         <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js'></script>
         <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
