@@ -36,13 +36,20 @@
                         required>
                 </form>
 
-                <ul class='items'>
-                    <li ng-repeat='item in list.itemList'>
-                        <!-- <button ng-click='completed = !completed' class='check'></button> -->
+                <ul class='toDoList'>
+                    <li
+                        ng-repeat='item in list.itemList'
+                        ng-mouseenter='delete = true' ng-mouseleave='delete = false'>
+                        <button ng-click='completed = !completed' class='check'></button>
                         <p class='todoText' ng-bind='item.text'></p>
-                        <!-- <input type='text' ng-submit='list.editItem(list.editedItem)' ng-model='list.editedItem.text' name='editItem' class='edit-todo' ng-show='editItem'>
-
-                        <button class='delete'>X</button> -->
+                        <input
+                            type='text'
+                            name='editItem'
+                            class='edit-todo'
+                            ng-submit='list.editItem(list.editedItem)'
+                            ng-model='list.editedItem.text'
+                            ng-show='editItem'>
+                        <button class='delete' ng-show='delete'>X</button>
                     </li>
                     <!-- example of completed item -->
     <!--

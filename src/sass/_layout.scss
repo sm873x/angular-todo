@@ -2,7 +2,6 @@ body {
     background-color: $backgroundColor;
     font-family: $primaryFont;
     position: relative;
-    text-align: center;
 }
 
 main {
@@ -19,6 +18,7 @@ header {
         margin: $titleMargin;
         color: $titleTextColor;
         font-weight: lighter;
+        text-align: center;
     }
 }
 
