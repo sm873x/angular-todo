@@ -10,10 +10,6 @@
     function ListController(ItemService) {
         var that = this;
 
-        function clearInput() {
-            that.newItem = {};
-        }
-
         this.itemList = ItemService.getAll();
         console.log('getAll', this.itemList);
 
@@ -24,6 +20,10 @@
             clearInput();
         };
 
+
+        function clearInput() {
+            that.newItem = {};
+        }
         // this.editedItem = {};
         // this.editItem = function editItem(editedItem) {
         //     ItemService.save(editedItem);

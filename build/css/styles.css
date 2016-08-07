@@ -408,7 +408,7 @@ nav {
   .toDoList li * {
     display: inline; }
 
-.complete {
+.completed {
   text-decoration: line-through; }
 
 .check {

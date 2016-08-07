@@ -39,9 +39,14 @@
                 <ul class='toDoList'>
                     <li
                         ng-repeat='item in list.itemList'
-                        ng-mouseenter='delete = true' ng-mouseleave='delete = false'>
-                        <button ng-click='completed = !completed' class='check'></button>
-                        <p class='todoText' ng-bind='item.text'></p>
+                        ng-mouseenter='delete = true'
+                        ng-mouseleave='delete = false'>
+                        <button ng-click='item.completed = !item.completed' class='check'></button>
+                        <p
+                            class='todoText'
+                            ng-bind='item.text'
+                            ng-class='item.completed && "completed" || "none"'>
+                        </p>
                         <input
                             type='text'
                             name='editItem'

@@ -1,12 +1,12 @@
 .toDoList {
     list-style: none;
-    
+
     li * {
         display: inline;
     }
 }
 
-.complete {
+.completed {
     text-decoration: line-through;
 }
 
