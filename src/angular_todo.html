@@ -24,7 +24,6 @@
             <section>
                 <form
                     novalidate
-                    method='post'
                     class='addItem'
                     name='addItem'
                     ng-submit='list.addToList(list.newItem)'>
@@ -39,11 +38,11 @@
 
                 <ul class='items'>
                     <li ng-repeat='item in list.itemList'>
-                        <button ng-click='completed = !completed' class='check'></button>
-                        <p class='todoText' ng-click='editItem' ng-class='{strike: completed}'>{{item.text}}</p>
-                        <input type='text' ng-submit='list.editItem(list.editedItem)' ng-model='list.editedItem.text' name='editItem' class='edit-todo' ng-show='editItem'>
+                        <!-- <button ng-click='completed = !completed' class='check'></button> -->
+                        <p class='todoText' ng-bind='item.text'></p>
+                        <!-- <input type='text' ng-submit='list.editItem(list.editedItem)' ng-model='list.editedItem.text' name='editItem' class='edit-todo' ng-show='editItem'>
 
-                        <button class='delete'>X</button>
+                        <button class='delete'>X</button> -->
                     </li>
                     <!-- example of completed item -->
     <!--
