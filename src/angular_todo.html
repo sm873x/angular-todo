@@ -12,7 +12,6 @@
                 maximum-scale=1.0, user-scalable=no'>
 
         <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,400,400italic' rel='stylesheet' type='text/css'>
-        <link rel='stylesheet' href='../font-awesome.css'>
         <link
             href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
             rel='stylesheet'
@@ -33,28 +32,45 @@
                     novalidate
                     method='post'
                     name='inputItem'
-                    ng-submit='list.addItem(list.content)'>
+                    ng-submit='list.addToList(list.newItem)'>
                     <input
                         type='text'
-                        name='listItem'
-                        ng-model='list.content'
+                        name='newItem'
+                        ng-model='list.newItem.text'
                         class='new-todo'
                         placeholder='   What needs to be done?'
                         required>
                 </form>
 
                 <ul class='items'>
-                    <!-- example of existing item (incomplete) -->
-
-                    <!-- <li>
+                    <li ng-repeat='item in list.itemList'>
                         <article class='openItem'>
-                            <button class='check'></button>
-                            <p class='todoText'>learn html</p>
-                            <input type='text' class='edit-todo' value='learn html'>
+                            <button ng-click='completed = !completed' class='check'></button>
+                            <p class='todoText' ng-click='editItem' ng-class='{strike: completed}'>{{item.text}}</p>
+                            <form
+                                method='post'
+                                name='editItem'
+                                ng-submit='list.editItem(list.editedItem)'>
+                                <input type='text' ng-model='list.editedItem.text' name='editItem' class='edit-todo' ng-show='editItem'>
+                            </form>
                             <button class='delete'>X</button>
                         </article>
-                    </li> -->
+                    </li>
 
+
+                    <form
+                        novalidate
+                        method='post'
+                        name='inputItem'
+                        ng-submit='list.addToList(list.newItem)'>
+                        <input
+                            type='text'
+                            name='newItem'
+                            ng-model='list.newItem.text'
+                            class='new-todo'
+                            placeholder='   What needs to be done?'
+                            required>
+                    </form>
                     <!-- example of completed item -->
     <!--
                     <li>
