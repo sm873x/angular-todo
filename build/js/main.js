@@ -69,8 +69,8 @@
     ListController.$inject = ['item'];
 
     function ListController(ItemService) {
-        this.itemlist = ItemService.getAll();
-
+        this.itemList = ItemService.getAll();
+        console.log('getAll', this.itemList);
         this.newItem = {};
         this.addToList = function addToList(item) {
             ItemService.save(item);

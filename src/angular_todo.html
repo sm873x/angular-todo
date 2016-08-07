@@ -15,12 +15,12 @@
 
         <link href='/css/styles.css' rel='stylesheet' type='text/css'>
     </head>
-    <body ng-controller='ListController as list'>
+    <body>
         <header>
             <h1>todos</h1>
         </header>
 
-        <main>
+        <main ng-controller='ListController as list'>
             <section>
                 <form
                     novalidate
@@ -39,33 +39,12 @@
 
                 <ul class='items'>
                     <li ng-repeat='item in list.itemList'>
-                        <article class='openItem'>
-                            <button ng-click='completed = !completed' class='check'></button>
-                            <p class='todoText' ng-click='editItem' ng-class='{strike: completed}'>{{item.text}}</p>
-                            <form
-                                method='post'
-                                name='editItem'
-                                ng-submit='list.editItem(list.editedItem)'>
-                                <input type='text' ng-model='list.editedItem.text' name='editItem' class='edit-todo' ng-show='editItem'>
-                            </form>
-                            <button class='delete'>X</button>
-                        </article>
+                        <button ng-click='completed = !completed' class='check'></button>
+                        <p class='todoText' ng-click='editItem' ng-class='{strike: completed}'>{{item.text}}</p>
+                        <input type='text' ng-submit='list.editItem(list.editedItem)' ng-model='list.editedItem.text' name='editItem' class='edit-todo' ng-show='editItem'>
+
+                        <button class='delete'>X</button>
                     </li>
-
-
-                    <form
-                        novalidate
-                        method='post'
-                        name='inputItem'
-                        ng-submit='list.addToList(list.newItem)'>
-                        <input
-                            type='text'
-                            name='newItem'
-                            ng-model='list.newItem.text'
-                            class='new-todo'
-                            placeholder='   What needs to be done?'
-                            required>
-                    </form>
                     <!-- example of completed item -->
     <!--
                     <li>

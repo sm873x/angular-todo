@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                 options: {
                     sourceMap: true
                 },
-                src: ['src/js/todo.module.js', 'src/js/item.service.js', 'src/js/list.controller.js'],
+                src: ['src/js/todo.module.js', 'src/js/*.js'],
                 dest: 'build/js/main.js'
             }
         },
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: [ 'src/js/**/*.js' ],
-                tasks: [ 'jshint','test', 'concat' ] //add 'test' in middle
+                tasks: [ 'jshint', 'concat' ] //add 'test' in middle
             },
             html: {
                 files: [ 'src/**/*.html' ],
