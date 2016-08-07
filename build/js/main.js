@@ -8,50 +8,86 @@
 
 (function() {
     'use strict';
+
+    angular.module('todo')
+        .factory('item', ItemService);
+
+    function ItemService() {
+        return {
+            getAll: getAll,
+            save: save
+            // edit: edit
+        };
+    }
+
+    function getAll() {
+        var itemList = JSON.parse(localStorage.getItem('itemList'));
+        return itemList;
+    }
+
+    function save(item) {
+        var itemList = JSON.parse(localStorage.getItem('itemList'));
+
+        var data = {
+            text: item.text,
+            createdOn: new Date(),
+            completed: false
+        };
+
+        itemList.push(data);
+
+        localStorage.setItem('itemList', angular.toJson(itemList));
+
+        return data;
+
+    }
+
+    // function edit(text) {
+    //     var itemList = JSON.parse(localStorage.getItem('itemList'));
     //
-    // angular.module('todo')
-    //     .factory('item', ItemService);
+    //     var theFoundItem = null;
     //
-    // function ItemService() {
-    //     return {
-    //         save: save,
-    //     };
-    // }
+    //     if (!text || typeof(text) !== 'string') {
+    //         return theFoundItem;
+    //     }
     //
-    // var nextId = 1;
-    //
-    // function addItem(item) {
-    //     // var listItems = [];
-    //     //
-    //     // if (!item) {
-    //     //     return item;
-    //     // }
-    //     //
-    //     // var data = {
-    //     //     id: nextId;
-    //     //     content: item.content;
-    //     // }
-    //
-    // }
+    //     itemList.forEach(function findItem(item) {
+    //         if (item.text === text) {
+    //             theFoundItem = item;
+    //         }
+    //     });
+
 })();
 
 (function() {
 
     'use strict';
-    //
-    // angular.module('todo')
-    //     .controller('ListController', ListController);
 
-    // ListController.$inject = ['item'];
-    //
-    // function ListController() {
-    //     this.addItem = function addItem(item) {
-    //         ItemService.save(item);
-    //
-    //     }
-    //
-    //
-    // }
+    angular.module('todo')
+        .controller('ListController', ListController);
+
+    ListController.$inject = ['item'];
+
+    function ListController(ItemService) {
+        this.itemlist = ItemService.getAll();
+
+        this.newItem = {};
+        this.addToList = function addToList(item) {
+            ItemService.save(item);
+
+        };
+
+        this.editedItem = {};
+        this.editItem = function editItem(editedItem) {
+            ItemService.save(editedItem);
+        };
+
+        this.deleteItem = function deleteItem() {
+
+        };
+
+
+    }
 })();
 
 //# sourceMappingURL=main.js.map

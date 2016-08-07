@@ -24,7 +24,7 @@ module.exports = function(grunt) {
                 options: {
                     sourceMap: true
                 },
-                src: ['src/js/todo.module.js', 'src/js/*.js'],
+                src: ['src/js/todo.module.js', 'src/js/item.service.js', 'src/js/list.controller.js'],
                 dest: 'build/js/main.js'
             }
         },
