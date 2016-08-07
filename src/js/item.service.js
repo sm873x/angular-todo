@@ -7,8 +7,8 @@
     function ItemService() {
         return {
             getAll: getAll,
-            save: save
-            // edit: edit
+            saveItem: saveItem,
+            deleteItem: deleteItem
         };
     }
 
@@ -17,7 +17,7 @@
         return itemList;
     }
 
-    function save(item) {
+    function saveItem(item) {
         var itemList = JSON.parse(localStorage.getItem('itemList'));
 
         var data = {
@@ -32,6 +32,16 @@
 
         return data;
 
+    }
+
+    function deleteItem(index) {
+        var itemList = JSON.parse(localStorage.getItem('itemList'));
+
+        if (index >= 0) {
+            itemList.splice(index, 1);
+        }
+
+        localStorage.setItem('itemList', angular.toJson(itemList));
     }
 
     // function edit(text) {

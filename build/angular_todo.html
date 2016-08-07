@@ -54,7 +54,11 @@
                             ng-submit='list.editItem(list.editedItem)'
                             ng-model='list.editedItem.text'
                             ng-show='editItem'>
-                        <button class='delete' ng-show='delete'>X</button>
+                        <button
+                            class='delete'
+                            ng-show='delete'
+                            ng-click='list.clearDeletedItem($index)'>X
+                        </button>
                     </li>
                     <!-- example of completed item -->
     <!--

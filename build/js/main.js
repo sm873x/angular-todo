@@ -15,8 +15,8 @@
     function ItemService() {
         return {
             getAll: getAll,
-            save: save
-            // edit: edit
+            saveItem: saveItem,
+            deleteItem: deleteItem
         };
     }
 
@@ -25,7 +25,7 @@
         return itemList;
     }
 
-    function save(item) {
+    function saveItem(item) {
         var itemList = JSON.parse(localStorage.getItem('itemList'));
 
         var data = {
@@ -40,6 +40,16 @@
 
         return data;
 
+    }
+
+    function deleteItem(index) {
+        var itemList = JSON.parse(localStorage.getItem('itemList'));
+
+        if (index >= 0) {
+            itemList.splice(index, 1);
+        }
+
+        localStorage.setItem('itemList', angular.toJson(itemList));
     }
 
     // function edit(text) {
@@ -76,15 +86,25 @@
 
         this.newItem = {};
         this.addToList = function addToList(item) {
-            ItemService.save(item);
+            ItemService.saveItem(item);
             this.itemList = ItemService.getAll();
             clearInput();
         };
 
-
         function clearInput() {
             that.newItem = {};
         }
+
+        this.clearDeletedItem = function clearDeletedItem(index) {
+
+            that.itemList.splice(index, 1);
+
+            ItemService.deleteItem(index);
+        };
+
+
+
+
         // this.editedItem = {};
         // this.editItem = function editItem(editedItem) {
         //     ItemService.save(editedItem);

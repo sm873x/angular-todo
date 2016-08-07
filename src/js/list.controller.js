@@ -15,15 +15,25 @@
 
         this.newItem = {};
         this.addToList = function addToList(item) {
-            ItemService.save(item);
+            ItemService.saveItem(item);
             this.itemList = ItemService.getAll();
             clearInput();
         };
 
-
         function clearInput() {
             that.newItem = {};
         }
+
+        this.clearDeletedItem = function clearDeletedItem(index) {
+
+            that.itemList.splice(index, 1);
+
+            ItemService.deleteItem(index);
+        };
+
+
+
+
         // this.editedItem = {};
         // this.editItem = function editItem(editedItem) {
         //     ItemService.save(editedItem);
